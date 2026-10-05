@@ -46,6 +46,36 @@
             </RelativeLayout>
         </androidx.appcompat.widget.Toolbar>
 
+        <!-- Barra de Búsqueda (HU-07 CA3) -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="6dp"
+            app:cardBackgroundColor="@color/surface_light"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="1dp"
+            app:strokeColor="@color/card_border"
+            app:strokeWidth="1dp">
+
+            <EditText
+                android:id="@+id/etBuscarRopa"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@null"
+                android:drawableStart="@android:drawable/ic_menu_search"
+                android:drawablePadding="10dp"
+                android:hint="@string/hint_buscar_ropa"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:maxLines="1"
+                android:paddingHorizontal="14dp"
+                android:textColor="@color/text_primary"
+                android:textColorHint="@color/text_secondary"
+                android:textSize="14sp" />
+        </com.google.android.material.card.MaterialCardView>
+
         <!-- Lista de Prendas Registradas -->
         <FrameLayout
             android:layout_width="match_parent"
@@ -56,7 +86,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:clipToPadding="false"
-                android:paddingTop="8dp"
+                android:paddingTop="4dp"
                 android:paddingBottom="88dp"
                 tools:listitem="@layout/item_ropa" />
 

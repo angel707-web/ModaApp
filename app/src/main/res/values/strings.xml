@@ -28,8 +28,9 @@
     <string name="menu_option_reportes">Reportes</string>
     <string name="btn_salir">Salir</string>
 
-    <!-- Registro de Ropa (HU-05, P2-03) -->
+    <!-- Registro y Edición de Ropa (HU-05, HU-07, P2-03) -->
     <string name="title_registrar_ropa">Nueva prenda</string>
+    <string name="title_editar_ropa">Editar prenda</string>
     <string name="btn_cambiar_foto">Elegir foto</string>
     <string name="label_categoria">Categoría</string>
     <string name="label_talla">Talla</string>
@@ -44,6 +45,13 @@
     <string name="label_precio">Precio (S/)</string>
     <string name="hint_precio">Ej. 39.90</string>
     <string name="btn_guardar_prenda">Guardar</string>
+    <string name="btn_actualizar_prenda">Actualizar</string>
+    <string name="btn_eliminar_prenda">Eliminar prenda</string>
+    <string name="dialog_confirmar_eliminar_titulo">¿Eliminar prenda?</string>
+    <string name="dialog_confirmar_eliminar_mensaje">Esta acción no se puede deshacer. ¿Deseas eliminar esta prenda del catálogo?</string>
+    <string name="dialog_btn_eliminar">Sí, eliminar</string>
+    <string name="dialog_btn_cancelar">Cancelar</string>
+    <string name="error_no_se_puede_eliminar_pedidos">No se puede eliminar: tiene pedidos</string>
     <string name="error_modelo_requerido">El modelo es requerido</string>
     <string name="error_foto_requerida">Debes elegir una foto de la prenda</string>
     <string name="error_cantidad_invalida">La cantidad debe ser mayor o igual a 0</string>
@@ -51,10 +59,31 @@
     <string name="error_marca_requerida">La marca es requerida</string>
     <string name="error_color_requerido">El color es requerido</string>
     <string name="toast_prenda_guardada">Prenda guardada con éxito</string>
+    <string name="toast_prenda_actualizada">Prenda actualizada con éxito</string>
+    <string name="toast_prenda_eliminada">Prenda eliminada con éxito</string>
+    <string name="hint_buscar_ropa">Buscar por modelo, marca o color...</string>
     <string name="empty_ropa_list">No hay prendas registradas. Pulsa + para registrar una nueva prenda.</string>
     <string name="empty_catalogo_list">No hay prendas disponibles en esta categoría.</string>
     <string name="stock_format">Stock: %1$d</string>
     <string name="precio_format">S/ %.2f</string>
+
+    <!-- Datos del Pedido (HU-09, P2-06) -->
+    <string name="title_datos_pedido">Datos del pedido</string>
+    <string name="label_telefono">Teléfono (9 dígitos)</string>
+    <string name="hint_telefono">Ej. 987654321</string>
+    <string name="aviso_numero_nuevo">Número nuevo: completa tus datos</string>
+    <string name="saludo_cliente_format">Hola, %1$s</string>
+    <string name="label_nombres">Nombres</string>
+    <string name="hint_nombres">Ingresa tus nombres</string>
+    <string name="label_apellidos">Apellidos</string>
+    <string name="hint_apellidos">Ingresa tus apellidos</string>
+    <string name="resumen_prendas_format">%1$d prendas</string>
+    <string name="btn_confirmar_pedido">Confirmar pedido</string>
+    <string name="toast_pedido_registrado">Pedido #%1$d registrado</string>
+    <string name="dialog_elegir_cantidad_titulo">Seleccionar cantidad</string>
+    <string name="dialog_stock_disponible_format">Disponible: %1$d</string>
+    <string name="dialog_btn_agregar_carrito">Agregar al carrito</string>
+    <string name="dialog_confirmar_quitar_item">¿Quitar esta prenda del carrito?</string>
 
     <!-- Catálogo de Cliente (HU-02, P2-04) -->
     <string name="catalogo_title">Catálogo</string>

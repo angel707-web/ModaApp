@@ -2,12 +2,19 @@ package com.senati.modaapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.widget.NumberPicker
+import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.chip.Chip
+import com.senati.modaapp.data.Carrito
 import com.senati.modaapp.data.dao.CategoriaDao
 import com.senati.modaapp.data.dao.RopaDao
+import com.senati.modaapp.data.model.Ropa
 import com.senati.modaapp.databinding.ActivityCatalogoBinding
 
 class CatalogoActivity : AppCompatActivity() {
@@ -33,7 +40,10 @@ class CatalogoActivity : AppCompatActivity() {
     }
 
     private fun setupRecyclerView() {
-        catalogoAdapter = CatalogoAdapter()
+        // HU-08 CA1: Al pulsar Agregar, diálogo para seleccionar cantidad respetando stock disponible
+        catalogoAdapter = CatalogoAdapter { ropa ->
+            mostrarDialogoSeleccionarCantidad(ropa)
+        }
         binding.rvCatalogo.apply {
             layoutManager = GridLayoutManager(this@CatalogoActivity, 2)
             adapter = catalogoAdapter
@@ -41,17 +51,14 @@ class CatalogoActivity : AppCompatActivity() {
     }
 
     private fun setupListeners() {
-        // Regresar a la pantalla anterior (Login)
         binding.btnBack.setOnClickListener {
             finish()
         }
 
-        // Abrir Carrito de compras (flujo de cliente)
         binding.btnCarrito.setOnClickListener {
             startActivity(Intent(this, CarritoActivity::class.java))
         }
 
-        // Chip "Todas"
         binding.chipTodas.setOnClickListener {
             categoriaSeleccionadaId = null
             cargarPrendas()
@@ -77,10 +84,20 @@ class CatalogoActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         cargarPrendas()
+        actualizarBadgeCarrito()
+    }
+
+    private fun actualizarBadgeCarrito() {
+        val totalPrendas = Carrito.obtenerCantidadTotal()
+        if (totalPrendas > 0) {
+            binding.tvBadgeCount.text = totalPrendas.toString()
+            binding.tvBadgeCount.visibility = View.VISIBLE
+        } else {
+            binding.tvBadgeCount.visibility = View.GONE
+        }
     }
 
     private fun cargarPrendas() {
-        // Cargar solo prendas disponibles (cantidad > 0)
         val prendasDisponibles = ropaDao.listarDisponibles(categoriaSeleccionadaId)
         catalogoAdapter.actualizarLista(prendasDisponibles)
 
@@ -91,5 +108,36 @@ class CatalogoActivity : AppCompatActivity() {
             binding.tvEmptyCatalogo.visibility = View.GONE
             binding.rvCatalogo.visibility = View.VISIBLE
         }
+    }
+
+    /**
+     * HU-08 CA1: Muestra selector de cantidad con límite de stock disponible ("Disponible: N")
+     */
+    private fun mostrarDialogoSeleccionarCantidad(ropa: Ropa) {
+        if (ropa.cantidad <= 0) {
+            Toast.makeText(this, "Prenda agotada", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val dialogView = LayoutInflater.from(this).inflate(android.R.layout.select_dialog_item, null)
+        val picker = NumberPicker(this).apply {
+            minValue = 1
+            maxValue = ropa.cantidad
+            value = 1
+            wrapSelectorWheel = false
+        }
+
+        AlertDialog.Builder(this)
+            .setTitle(ropa.modelo)
+            .setMessage(getString(R.string.dialog_stock_disponible_format, ropa.cantidad))
+            .setView(picker)
+            .setPositiveButton(getString(R.string.dialog_btn_agregar_carrito)) { _, _ ->
+                val cantidadElegida = picker.value
+                Carrito.agregar(ropa, cantidadElegida)
+                actualizarBadgeCarrito()
+                Toast.makeText(this, "Agregado: ${ropa.modelo} (x$cantidadElegida)", Toast.LENGTH_SHORT).show()
+            }
+            .setNegativeButton(getString(R.string.dialog_btn_cancelar), null)
+            .show()
     }
 }

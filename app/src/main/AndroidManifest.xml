@@ -51,6 +51,10 @@
         <activity
             android:name=".CarritoActivity"
             android:exported="false" />
+        <activity
+            android:name=".PedidoActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
 
     </application>
 
