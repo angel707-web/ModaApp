@@ -78,12 +78,12 @@
         </RelativeLayout>
     </androidx.appcompat.widget.Toolbar>
 
-    <!-- Filtro de Categorías con Chips Horizontales -->
+    <!-- Filtro de Categorías con Chips Horizontales (Cargado dinámicamente) -->
     <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingHorizontal="16dp"
-        android:paddingVertical="12dp"
+        android:paddingVertical="10dp"
         android:scrollbars="none">
 
         <com.google.android.material.chip.ChipGroup
@@ -97,368 +97,36 @@
                 style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:checked="true"
                 android:text="@string/chip_todas"
                 app:chipCornerRadius="20dp" />
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipPolos"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="@string/chip_polos"
-                app:chipCornerRadius="20dp" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipPantalones"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/chip_pantalones"
-                app:chipCornerRadius="20dp" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipVestidos"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/chip_vestidos"
-                app:chipCornerRadius="20dp" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipCasacas"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/chip_casacas"
-                app:chipCornerRadius="20dp" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipZapatillas"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/chip_zapatillas"
-                app:chipCornerRadius="20dp" />
         </com.google.android.material.chip.ChipGroup>
     </HorizontalScrollView>
 
     <!-- Lista de Prendas en Grilla de 2 Columnas -->
-    <ScrollView
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:fillViewport="true">
+        android:layout_height="match_parent">
 
-        <GridLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvCatalogo"
             android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:padding="6dp"
+            tools:listitem="@layout/item_catalogo" />
+
+        <TextView
+            android:id="@+id/tvEmptyCatalogo"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:columnCount="2"
-            android:padding="8dp">
-
-            <!-- Item 1: Polo oversize -->
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:layout_margin="6dp"
-                app:cardBackgroundColor="@color/surface_light"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="2dp"
-                app:strokeColor="@color/card_border"
-                app:strokeWidth="1dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="12dp">
-
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="120dp"
-                        android:background="@color/surface_variant">
-
-                        <ImageView
-                            android:layout_width="72dp"
-                            android:layout_height="72dp"
-                            android:layout_gravity="center"
-                            android:contentDescription="@string/desc_activity_ropa"
-                            android:src="@drawable/ic_tshirt" />
-                    </FrameLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="Polo oversize"
-                        android:textColor="@color/text_primary"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Talla M · Azul"
-                        android:textColor="@color/text_secondary"
-                        android:textSize="13sp" />
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentStart="true"
-                            android:layout_centerVertical="true"
-                            android:text="S/ 39.90"
-                            android:textColor="@color/primary"
-                            android:textSize="16sp"
-                            android:textStyle="bold" />
-
-                        <com.google.android.material.floatingactionbutton.FloatingActionButton
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:contentDescription="@string/desc_add_product"
-                            android:src="@drawable/ic_add"
-                            app:backgroundTint="@color/primary"
-                            app:fabCustomSize="36dp"
-                            app:tint="@color/white" />
-                    </RelativeLayout>
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <!-- Item 2: Polo básico -->
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:layout_margin="6dp"
-                app:cardBackgroundColor="@color/surface_light"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="2dp"
-                app:strokeColor="@color/card_border"
-                app:strokeWidth="1dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="12dp">
-
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="120dp"
-                        android:background="@color/surface_variant">
-
-                        <ImageView
-                            android:layout_width="72dp"
-                            android:layout_height="72dp"
-                            android:layout_gravity="center"
-                            android:contentDescription="@string/desc_activity_ropa"
-                            android:src="@drawable/ic_tshirt"
-                            app:tint="@color/black" />
-                    </FrameLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="Polo básico"
-                        android:textColor="@color/text_primary"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Talla S · Negro"
-                        android:textColor="@color/text_secondary"
-                        android:textSize="13sp" />
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentStart="true"
-                            android:layout_centerVertical="true"
-                            android:text="S/ 29.90"
-                            android:textColor="@color/primary"
-                            android:textSize="16sp"
-                            android:textStyle="bold" />
-
-                        <com.google.android.material.floatingactionbutton.FloatingActionButton
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:contentDescription="@string/desc_add_product"
-                            android:src="@drawable/ic_add"
-                            app:backgroundTint="@color/primary"
-                            app:fabCustomSize="36dp"
-                            app:tint="@color/white" />
-                    </RelativeLayout>
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <!-- Item 3: Polo estampado -->
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:layout_margin="6dp"
-                app:cardBackgroundColor="@color/surface_light"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="2dp"
-                app:strokeColor="@color/card_border"
-                app:strokeWidth="1dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="12dp">
-
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="120dp"
-                        android:background="@color/surface_variant">
-
-                        <ImageView
-                            android:layout_width="72dp"
-                            android:layout_height="72dp"
-                            android:layout_gravity="center"
-                            android:contentDescription="@string/desc_activity_ropa"
-                            android:src="@drawable/ic_tshirt"
-                            app:tint="@color/pending_red" />
-                    </FrameLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="Polo estampado"
-                        android:textColor="@color/text_primary"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Talla L · Rojo"
-                        android:textColor="@color/text_secondary"
-                        android:textSize="13sp" />
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentStart="true"
-                            android:layout_centerVertical="true"
-                            android:text="S/ 45.00"
-                            android:textColor="@color/primary"
-                            android:textSize="16sp"
-                            android:textStyle="bold" />
-
-                        <com.google.android.material.floatingactionbutton.FloatingActionButton
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:contentDescription="@string/desc_add_product"
-                            android:src="@drawable/ic_add"
-                            app:backgroundTint="@color/primary"
-                            app:fabCustomSize="36dp"
-                            app:tint="@color/white" />
-                    </RelativeLayout>
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <!-- Item 4: Polo cuello V -->
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:layout_margin="6dp"
-                app:cardBackgroundColor="@color/surface_light"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="2dp"
-                app:strokeColor="@color/card_border"
-                app:strokeWidth="1dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="12dp">
-
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="120dp"
-                        android:background="@color/surface_variant">
-
-                        <ImageView
-                            android:layout_width="72dp"
-                            android:layout_height="72dp"
-                            android:layout_gravity="center"
-                            android:contentDescription="@string/desc_activity_ropa"
-                            android:src="@drawable/ic_tshirt"
-                            app:tint="#B0BEC5" />
-                    </FrameLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="Polo cuello V"
-                        android:textColor="@color/text_primary"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Talla M · Blanco"
-                        android:textColor="@color/text_secondary"
-                        android:textSize="13sp" />
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentStart="true"
-                            android:layout_centerVertical="true"
-                            android:text="S/ 32.00"
-                            android:textColor="@color/primary"
-                            android:textSize="16sp"
-                            android:textStyle="bold" />
-
-                        <com.google.android.material.floatingactionbutton.FloatingActionButton
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:contentDescription="@string/desc_add_product"
-                            android:src="@drawable/ic_add"
-                            app:backgroundTint="@color/primary"
-                            app:fabCustomSize="36dp"
-                            app:tint="@color/white" />
-                    </RelativeLayout>
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-        </GridLayout>
-    </ScrollView>
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="32dp"
+            android:gravity="center"
+            android:text="@string/empty_catalogo_list"
+            android:textColor="@color/text_secondary"
+            android:textSize="15sp"
+            android:visibility="gone" />
+    </FrameLayout>
 </LinearLayout>

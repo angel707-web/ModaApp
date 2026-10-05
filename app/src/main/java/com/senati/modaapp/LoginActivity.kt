@@ -5,16 +5,25 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doAfterTextChanged
+import com.senati.modaapp.data.dao.UsuarioDao
 import com.senati.modaapp.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
+    private lateinit var usuarioDao: UsuarioDao
+
+    companion object {
+        const val EXTRA_USER_NAME = "extra_user_name"
+        const val EXTRA_USER_ROLE = "extra_user_role"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        usuarioDao = UsuarioDao(this)
 
         setupListeners()
     }
@@ -28,12 +37,12 @@ class LoginActivity : AppCompatActivity() {
             binding.tilPassword.error = null
         }
 
-        // Ingresar como administrador
+        // Ingresar como administrador con validación SQLite
         binding.btnLoginAdmin.setOnClickListener {
             validarLogin()
         }
 
-        // Ver catálogo (cliente)
+        // Ver catálogo (cliente sin login)
         binding.btnVerCatalogo.setOnClickListener {
             val intent = Intent(this, CatalogoActivity::class.java)
             startActivity(intent)
@@ -64,9 +73,14 @@ class LoginActivity : AppCompatActivity() {
             return
         }
 
-        // Validación de credenciales para Sprint 1
-        if (usuario == "admin" && password == "1234") {
-            val intent = Intent(this, MenuActivity::class.java)
+        // Validación con base de datos SQLite (HU-04: consulta parametrizada)
+        val usuarioAutenticado = usuarioDao.validarUsuario(usuario, password)
+
+        if (usuarioAutenticado != null) {
+            val intent = Intent(this, MenuActivity::class.java).apply {
+                putExtra(EXTRA_USER_NAME, usuarioAutenticado.usuario)
+                putExtra(EXTRA_USER_ROLE, usuarioAutenticado.rol)
+            }
             startActivity(intent)
             finish() // Login se cierra: atrás no regresa al login
         } else {

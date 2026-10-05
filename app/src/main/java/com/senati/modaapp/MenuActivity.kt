@@ -14,7 +14,15 @@ class MenuActivity : AppCompatActivity() {
         binding = ActivityMenuBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setupUserHeader()
         setupNavigation()
+    }
+
+    private fun setupUserHeader() {
+        val userName = intent.getStringExtra(LoginActivity.EXTRA_USER_NAME) ?: "admin"
+        val userRole = intent.getStringExtra(LoginActivity.EXTRA_USER_ROLE) ?: "ADMIN"
+        binding.tvGreetingAdmin.text = getString(R.string.greeting_admin_format, userName)
+        binding.tvPendingOrders.text = getString(R.string.user_role_format, userRole)
     }
 
     private fun setupNavigation() {

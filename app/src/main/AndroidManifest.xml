@@ -31,6 +31,10 @@
             android:name=".RopaActivity"
             android:exported="false" />
         <activity
+            android:name=".RegistrarRopaActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
             android:name=".PedidosActivity"
             android:exported="false" />
         <activity

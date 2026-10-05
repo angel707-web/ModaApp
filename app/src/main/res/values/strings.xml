@@ -16,15 +16,45 @@
     <string name="error_password_requerida">La contraseña es requerida</string>
     <string name="toast_credenciales_incorrectas">Credenciales incorrectas</string>
 
-    <!-- Menú Administrador (HU-02, P2-02) -->
+    <!-- Menú Administrador (HU-02, P2-02, HU-04) -->
     <string name="menu_title">ModaApp</string>
     <string name="greeting_admin">Hola, admin</string>
+    <string name="greeting_admin_format">Hola, %1$s</string>
+    <string name="user_role_format">Rol: %1$s · 4 pedidos pendientes</string>
     <string name="pending_orders_summary">4 pedidos pendientes</string>
     <string name="menu_option_ropa">Ropa</string>
     <string name="menu_option_pedidos">Pedidos</string>
     <string name="menu_option_clientes">Clientes</string>
     <string name="menu_option_reportes">Reportes</string>
     <string name="btn_salir">Salir</string>
+
+    <!-- Registro de Ropa (HU-05, P2-03) -->
+    <string name="title_registrar_ropa">Nueva prenda</string>
+    <string name="btn_cambiar_foto">Elegir foto</string>
+    <string name="label_categoria">Categoría</string>
+    <string name="label_talla">Talla</string>
+    <string name="label_modelo">Modelo</string>
+    <string name="hint_modelo">Ej. Polo oversize</string>
+    <string name="label_marca">Marca</string>
+    <string name="hint_marca">Ej. Urban</string>
+    <string name="label_color">Color</string>
+    <string name="hint_color">Ej. Azul</string>
+    <string name="label_cantidad">Cantidad</string>
+    <string name="hint_cantidad">Ej. 12</string>
+    <string name="label_precio">Precio (S/)</string>
+    <string name="hint_precio">Ej. 39.90</string>
+    <string name="btn_guardar_prenda">Guardar</string>
+    <string name="error_modelo_requerido">El modelo es requerido</string>
+    <string name="error_foto_requerida">Debes elegir una foto de la prenda</string>
+    <string name="error_cantidad_invalida">La cantidad debe ser mayor o igual a 0</string>
+    <string name="error_precio_invalido">El precio debe ser mayor a 0</string>
+    <string name="error_marca_requerida">La marca es requerida</string>
+    <string name="error_color_requerido">El color es requerido</string>
+    <string name="toast_prenda_guardada">Prenda guardada con éxito</string>
+    <string name="empty_ropa_list">No hay prendas registradas. Pulsa + para registrar una nueva prenda.</string>
+    <string name="empty_catalogo_list">No hay prendas disponibles en esta categoría.</string>
+    <string name="stock_format">Stock: %1$d</string>
+    <string name="precio_format">S/ %.2f</string>
 
     <!-- Catálogo de Cliente (HU-02, P2-04) -->
     <string name="catalogo_title">Catálogo</string>
