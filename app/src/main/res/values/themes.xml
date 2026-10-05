@@ -1,9 +1,31 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.ModaApp" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <!-- Brand Colors: Rosa y Negro -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorOnPrimary">@color/on_primary</item>
+        <item name="colorPrimaryContainer">@color/primary_container</item>
+        <item name="colorOnPrimaryContainer">@color/on_primary_container</item>
+        <item name="colorError">@color/error</item>
+        <item name="android:statusBarColor">@color/primary</item>
+        <item name="android:windowLightStatusBar">false</item>
     </style>
 
     <style name="Theme.ModaApp" parent="Base.Theme.ModaApp" />
+
+    <!-- Estilo para botones principales en rosa -->
+    <style name="Widget.ModaApp.Button.Primary" parent="Widget.Material3.Button">
+        <item name="backgroundTint">@color/primary</item>
+        <item name="android:textColor">@color/on_primary</item>
+        <item name="cornerRadius">28dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- Estilo para botones secundarios con borde rosa -->
+    <style name="Widget.ModaApp.Button.Outlined" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="strokeColor">@color/primary</item>
+        <item name="android:textColor">@color/primary</item>
+        <item name="cornerRadius">28dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 </resources>

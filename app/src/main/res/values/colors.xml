@@ -1,5 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <!-- Paleta Rosa y Negro (Boutique Moda Urbana) -->
+    <color name="primary">#A9104F</color>
+    <color name="primary_dark">#780027</color>
+    <color name="primary_light">#DF4B7A</color>
+    <color name="primary_container">#FDE8EF</color>
+    <color name="on_primary">#FFFFFF</color>
+    <color name="on_primary_container">#A9104F</color>
+
+    <color name="black">#121212</color>
+    <color name="white">#FFFFFF</color>
+    <color name="background_light">#FAFAFC</color>
+    <color name="surface_light">#FFFFFF</color>
+    <color name="surface_variant">#F4ECF0</color>
+    <color name="outline_border">#E2D5DC</color>
+
+    <color name="text_primary">#1F2937</color>
+    <color name="text_secondary">#6B7280</color>
+    <color name="text_hint">#9CA3AF</color>
+
+    <color name="error">#DC2626</color>
+    <color name="pending_red">#D32F2F</color>
+    <color name="card_border">#E5E7EB</color>
 </resources>

@@ -1,3 +1,65 @@
 <resources>
+    <!-- Nombre de la aplicación y negocio -->
     <string name="app_name">ModaApp</string>
+    <string name="business_subtitle">Boutique Moda Urbana</string>
+
+    <!-- Login Activity (HU-01, P2-01) -->
+    <string name="login_title">ModaApp</string>
+    <string name="label_usuario">Usuario</string>
+    <string name="hint_usuario">Ingresa tu usuario</string>
+    <string name="label_password">Contraseña</string>
+    <string name="hint_password">Ingresa tu contraseña</string>
+    <string name="btn_login_admin">Ingresar como administrador</string>
+    <string name="btn_ver_catalogo">Ver catálogo (cliente)</string>
+    <string name="login_credentials_demo">Prueba: admin / 1234</string>
+    <string name="error_usuario_requerido">El usuario es requerido</string>
+    <string name="error_password_requerida">La contraseña es requerida</string>
+    <string name="toast_credenciales_incorrectas">Credenciales incorrectas</string>
+
+    <!-- Menú Administrador (HU-02, P2-02) -->
+    <string name="menu_title">ModaApp</string>
+    <string name="greeting_admin">Hola, admin</string>
+    <string name="pending_orders_summary">4 pedidos pendientes</string>
+    <string name="menu_option_ropa">Ropa</string>
+    <string name="menu_option_pedidos">Pedidos</string>
+    <string name="menu_option_clientes">Clientes</string>
+    <string name="menu_option_reportes">Reportes</string>
+    <string name="btn_salir">Salir</string>
+
+    <!-- Catálogo de Cliente (HU-02, P2-04) -->
+    <string name="catalogo_title">Catálogo</string>
+    <string name="chip_todas">Todas</string>
+    <string name="chip_polos">Polos</string>
+    <string name="chip_pantalones">Pantalones</string>
+    <string name="chip_vestidos">Vestidos</string>
+    <string name="chip_casacas">Casacas</string>
+    <string name="chip_zapatillas">Zapatillas</string>
+    <string name="catalogo_badge_count">2</string>
+
+    <!-- Carrito de compras (HU-02, P2-05) -->
+    <string name="carrito_title">Mi carrito</string>
+    <string name="carrito_hint_quitar">Mantén presionado para quitar</string>
+    <string name="carrito_label_total">Total</string>
+    <string name="carrito_total_demo">S/ 288.70</string>
+    <string name="btn_hacer_pedido">Hacer pedido</string>
+    <string name="carrito_vacio">Tu carrito está vacío</string>
+
+    <!-- Módulos Administrador (Sprint 1 Navegación) -->
+    <string name="title_activity_ropa">Ropa</string>
+    <string name="desc_activity_ropa">Gestión y registro de prendas del catálogo</string>
+    <string name="title_activity_pedidos">Pedidos</string>
+    <string name="desc_activity_pedidos">Atención y seguimiento de pedidos de clientes</string>
+    <string name="title_activity_clientes">Clientes</string>
+    <string name="desc_activity_clientes">Directorio de clientes registrados</string>
+    <string name="title_activity_reportes">Reportes</string>
+    <string name="desc_activity_reportes">Reportes de pedidos atendidos, stock y clientes</string>
+    <string name="modulo_placeholder_info">Módulo preparado en Sprint 1. La persistencia completa se habilitará en los siguientes Sprints.</string>
+    <string name="btn_volver">Volver al menú</string>
+
+    <!-- Accesibilidad y descripciones de contenido -->
+    <string name="desc_logo_app">Logo ModaApp</string>
+    <string name="desc_avatar_admin">Avatar administrador</string>
+    <string name="desc_icon_cart">Ver carrito de compras</string>
+    <string name="desc_btn_back">Volver</string>
+    <string name="desc_add_product">Agregar al carrito</string>
 </resources>

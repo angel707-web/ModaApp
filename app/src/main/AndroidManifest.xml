@@ -11,16 +11,43 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ModaApp">
+
+        <!-- Pantalla Inicial: LoginActivity (LAUNCHER) -->
         <activity
-            android:name=".MainActivity"
+            android:name=".LoginActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Pantallas del Administrador -->
+        <activity
+            android:name=".MenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RopaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PedidosActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ClientesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ReportesActivity"
+            android:exported="false" />
+
+        <!-- Pantallas del Cliente (Navegación libre sin login) -->
+        <activity
+            android:name=".CatalogoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CarritoActivity"
+            android:exported="false" />
+
     </application>
 
 </manifest>
