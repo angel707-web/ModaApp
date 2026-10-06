@@ -115,6 +115,45 @@
     <string name="modulo_placeholder_info">Módulo preparado en Sprint 1. La persistencia completa se habilitará en los siguientes Sprints.</string>
     <string name="btn_volver">Volver al menú</string>
 
+    <!-- Sprint 4: Pedidos y Atención (HU-11, P2-08) -->
+    <string name="tab_pendientes">Pendientes</string>
+    <string name="tab_atendidos">Atendidos</string>
+    <string name="chip_pendiente">Pendiente</string>
+    <string name="chip_atendido">Atendido</string>
+    <string name="pedido_titulo_item_format">#%1$d · %2$s</string>
+    <string name="pedido_resumen_item_format">%1$s · %2$s · S/ %3$,.2f</string>
+    <string name="pedido_una_prenda">1 prenda</string>
+    <string name="pedido_multiples_prendas_format">%1$d prendas</string>
+    <string name="btn_marcar_atendido_format">Marcar #%1$d como atendido</string>
+    <string name="btn_llamar_cliente">Llamar al cliente</string>
+    <string name="dialog_confirmar_atender_titulo">¿Marcar pedido como atendido?</string>
+    <string name="dialog_confirmar_atender_mensaje">¿Confirmas la atención del pedido #%1$d? Se actualizará el estado y se descontará el stock de las prendas.</string>
+    <string name="btn_confirmar_atender">Sí, atender</string>
+    <string name="toast_pedido_atendido">Pedido #%1$d marcado como atendido</string>
+    <string name="error_stock_insuficiente_format">Stock insuficiente: %1$s</string>
+    <string name="empty_pedidos_pendientes">No hay pedidos pendientes</string>
+    <string name="empty_pedidos_atendidos">No hay pedidos atendidos</string>
+    <string name="title_detalle_pedido">Detalle del pedido #%1$d</string>
+    <string name="detalle_pedido_cliente_label">Cliente: %1$s</string>
+    <string name="detalle_pedido_telefono_label">Teléfono: %1$s</string>
+    <string name="detalle_pedido_fecha_label">Fecha pedido: %1$s</string>
+    <string name="detalle_pedido_fecha_atencion_label">Fecha atención: %1$s</string>
+    <string name="detalle_pedido_items_header">Prendas solicitadas:</string>
+
+    <!-- Sprint 4: Reportes (HU-12, P2-09) -->
+    <string name="reportes_label_vendido_mes">Vendido en %1$s (atendidos)</string>
+    <string name="reportes_label_atendidos">Atendidos</string>
+    <string name="reportes_label_pendientes">Pendientes</string>
+    <string name="reportes_titulo_stock">Stock por prenda</string>
+    <string name="reportes_empty_stock">No hay prendas registradas</string>
+    <string name="reportes_monto_format">S/ %1$,.2f</string>
+
+    <!-- Sprint 4: Clientes (HU-12, P2-10) -->
+    <string name="hint_buscar_cliente">Buscar por nombre o teléfono</string>
+    <string name="cliente_conteo_pedidos_singular">1 pedido</string>
+    <string name="cliente_conteo_pedidos_plural">%1$d pedidos</string>
+    <string name="empty_clientes">No se encontraron clientes</string>
+
     <!-- Accesibilidad y descripciones de contenido -->
     <string name="desc_logo_app">Logo ModaApp</string>
     <string name="desc_avatar_admin">Avatar administrador</string>

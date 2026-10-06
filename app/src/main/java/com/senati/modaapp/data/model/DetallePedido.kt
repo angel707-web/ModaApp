@@ -7,5 +7,8 @@ data class DetallePedido(
     val cantidad: Int,
     val precioUnit: Double,
     val subtotal: Double,
-    val modeloRopa: String = ""
+    val modeloRopa: String = "",
+    val tallaRopa: String = "",
+    val colorRopa: String = "",
+    val fotoRopa: String = ""
 )

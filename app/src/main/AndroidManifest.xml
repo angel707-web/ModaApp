@@ -38,6 +38,9 @@
             android:name=".PedidosActivity"
             android:exported="false" />
         <activity
+            android:name=".DetallePedidoActivity"
+            android:exported="false" />
+        <activity
             android:name=".ClientesActivity"
             android:exported="false" />
         <activity

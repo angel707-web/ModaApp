@@ -3,26 +3,43 @@ package com.senati.modaapp
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.senati.modaapp.data.SessionManager
 import com.senati.modaapp.databinding.ActivityMenuBinding
 
 class MenuActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMenuBinding
+    private lateinit var sessionManager: SessionManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMenuBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        sessionManager = SessionManager(this)
+
         setupUserHeader()
         setupNavigation()
     }
 
     private fun setupUserHeader() {
-        val userName = intent.getStringExtra(LoginActivity.EXTRA_USER_NAME) ?: "admin"
-        val userRole = intent.getStringExtra(LoginActivity.EXTRA_USER_ROLE) ?: "ADMIN"
+        val userName = intent.getStringExtra(LoginActivity.EXTRA_USER_NAME) ?: sessionManager.obtenerUsuario()
         binding.tvGreetingAdmin.text = getString(R.string.greeting_admin_format, userName)
-        binding.tvPendingOrders.text = getString(R.string.user_role_format, userRole)
+        actualizarContadorPendientes()
+    }
+
+    private fun actualizarContadorPendientes() {
+        val pendientes = com.senati.modaapp.data.dao.ReporteDao(this).contarPedidos("PENDIENTE")
+        binding.tvPendingOrders.text = if (pendientes > 0) {
+            "Tienes $pendientes pedidos pendientes"
+        } else {
+            "No tienes pedidos pendientes"
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        actualizarContadorPendientes()
     }
 
     private fun setupNavigation() {
@@ -46,8 +63,9 @@ class MenuActivity : AppCompatActivity() {
             startActivity(Intent(this, ReportesActivity::class.java))
         }
 
-        // Salir: Regresar a LoginActivity
+        // HU-13 CA2: Salir borra la sesión recordada y regresa a LoginActivity
         binding.btnSalir.setOnClickListener {
+            sessionManager.cerrarSesion()
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()

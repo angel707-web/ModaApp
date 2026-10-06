@@ -8,5 +8,7 @@ data class Pedido(
     val estado: String = "PENDIENTE",
     val fechaAtencion: String? = null,
     val nombresCliente: String = "",
-    val telefonoCliente: String = ""
+    val apellidosCliente: String = "",
+    val telefonoCliente: String = "",
+    val cantidadPrendas: Int = 0
 )

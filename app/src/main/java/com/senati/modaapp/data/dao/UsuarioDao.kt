@@ -36,4 +36,22 @@ class UsuarioDao(context: Context) {
         }
         return usuarioEncontrado
     }
+
+    /**
+     * Obtiene el teléfono del administrador para envío de WhatsApp de pedidos (HU-10)
+     */
+    fun obtenerTelefonoAdmin(): String {
+        val db = dbHelper.readableDatabase
+        val cursor = db.rawQuery(
+            "SELECT ${DBHelper.COL_USUARIO_TELEFONO} FROM ${DBHelper.TABLE_USUARIO} WHERE ${DBHelper.COL_USUARIO_ROL} = 'ADMIN' LIMIT 1",
+            null
+        )
+        cursor.use {
+            if (it.moveToFirst()) {
+                val tel = it.getString(0)
+                if (!tel.isNullOrBlank()) return tel
+            }
+        }
+        return "987654321"
+    }
 }

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doAfterTextChanged
+import com.senati.modaapp.data.SessionManager
 import com.senati.modaapp.data.dao.UsuarioDao
 import com.senati.modaapp.databinding.ActivityLoginBinding
 
@@ -12,6 +13,7 @@ class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
     private lateinit var usuarioDao: UsuarioDao
+    private lateinit var sessionManager: SessionManager
 
     companion object {
         const val EXTRA_USER_NAME = "extra_user_name"
@@ -20,6 +22,20 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        sessionManager = SessionManager(this)
+
+        // HU-13 CA1: Si la sesión está recordada, entrar directamente al menú principal
+        if (sessionManager.estaLogueado()) {
+            val intent = Intent(this, MenuActivity::class.java).apply {
+                putExtra(EXTRA_USER_NAME, sessionManager.obtenerUsuario())
+                putExtra(EXTRA_USER_ROLE, sessionManager.obtenerRol())
+            }
+            startActivity(intent)
+            finish()
+            return
+        }
+
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -29,7 +45,6 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun setupListeners() {
-        // Limpiar errores al modificar texto
         binding.etUsuario.doAfterTextChanged {
             binding.tilUsuario.error = null
         }
@@ -37,12 +52,10 @@ class LoginActivity : AppCompatActivity() {
             binding.tilPassword.error = null
         }
 
-        // Ingresar como administrador con validación SQLite
         binding.btnLoginAdmin.setOnClickListener {
             validarLogin()
         }
 
-        // Ver catálogo (cliente sin login)
         binding.btnVerCatalogo.setOnClickListener {
             val intent = Intent(this, CatalogoActivity::class.java)
             startActivity(intent)
@@ -73,16 +86,18 @@ class LoginActivity : AppCompatActivity() {
             return
         }
 
-        // Validación con base de datos SQLite (HU-04: consulta parametrizada)
         val usuarioAutenticado = usuarioDao.validarUsuario(usuario, password)
 
         if (usuarioAutenticado != null) {
+            // HU-13 CA1: Guardar sesión activa en SharedPreferences
+            sessionManager.guardarSesion(usuarioAutenticado.usuario, usuarioAutenticado.rol)
+
             val intent = Intent(this, MenuActivity::class.java).apply {
                 putExtra(EXTRA_USER_NAME, usuarioAutenticado.usuario)
                 putExtra(EXTRA_USER_ROLE, usuarioAutenticado.rol)
             }
             startActivity(intent)
-            finish() // Login se cierra: atrás no regresa al login
+            finish()
         } else {
             Toast.makeText(this, getString(R.string.toast_credenciales_incorrectas), Toast.LENGTH_SHORT).show()
         }

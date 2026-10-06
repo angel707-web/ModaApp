@@ -7,6 +7,7 @@
     android:background="@color/background_light"
     android:orientation="vertical">
 
+    <!-- Barra superior -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarPedidos"
         android:layout_width="match_parent"
@@ -41,76 +42,101 @@
         </RelativeLayout>
     </androidx.appcompat.widget.Toolbar>
 
+    <!-- Toggle Pendientes / Atendidos estilo P2-08 -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="24dp">
-
-        <FrameLayout
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:background="@drawable/bg_circle_option">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="P"
-                android:textColor="@color/primary"
-                android:textSize="36sp"
-                android:textStyle="bold" />
-        </FrameLayout>
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/bg_search_edittext"
+        android:orientation="horizontal"
+        android:padding="4dp">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="@string/title_activity_pedidos"
-            android:textColor="@color/text_primary"
-            android:textSize="22sp"
+            android:id="@+id/btnTabPendientes"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_button_primary"
+            android:gravity="center"
+            android:text="@string/tab_pendientes"
+            android:textColor="@color/white"
+            android:textSize="15sp"
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/btnTabAtendidos"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:text="@string/tab_atendidos"
+            android:textColor="@color/text_primary"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- Lista de pedidos con scroll -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvPedidos"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingTop="4dp"
+            android:paddingBottom="12dp"
+            tools:listitem="@layout/item_pedido" />
+
+        <TextView
+            android:id="@+id/tvEmptyPedidos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:gravity="center"
-            android:text="@string/desc_activity_pedidos"
+            android:layout_gravity="center"
+            android:padding="24dp"
+            android:text="@string/empty_pedidos_pendientes"
+            android:textAlignment="center"
             android:textColor="@color/text_secondary"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            android:visibility="gone" />
+    </FrameLayout>
 
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            app:cardBackgroundColor="@color/surface_light"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="2dp"
-            app:strokeColor="@color/card_border"
-            app:strokeWidth="1dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:padding="20dp"
-                android:text="@string/modulo_placeholder_info"
-                android:textColor="@color/text_secondary"
-                android:textSize="14sp" />
-        </com.google.android.material.card.MaterialCardView>
+    <!-- Panel de acciones inferiores según P2-08 -->
+    <LinearLayout
+        android:id="@+id/panelAccionesPedido"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical">
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnVolverMenuPedidos"
+            android:id="@+id/btnMarcarAtendido"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:text="@string/btn_marcar_atendido_format"
+            android:textColor="@color/white"
+            app:backgroundTint="@color/primary"
+            app:cornerRadius="27dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnLlamarCliente"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_marginTop="28dp"
-            android:text="@string/btn_volver"
+            android:layout_height="54dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/btn_llamar_cliente"
             android:textColor="@color/primary"
-            app:cornerRadius="28dp"
+            app:cornerRadius="27dp"
             app:strokeColor="@color/primary"
             app:strokeWidth="1.5dp" />
     </LinearLayout>
+
 </LinearLayout>
